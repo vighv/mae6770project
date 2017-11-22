@@ -1,4 +1,4 @@
-#MAE 6770 Formal Methods for Robotics Project
+# MAE 6770 Formal Methods for Robotics Project
 Fall 2017
 
 Synthesis of controllers from motion primitive composition for third arm 
