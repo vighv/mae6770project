@@ -6,13 +6,13 @@ if [ "$1" == '' ]; then
        	exit
 fi
 
-cd ../../../src/2D/safe
+cd ~/Documents/MAE6770Project/SafeComplan/src/safe
 make
-cd ../../../examples/2D/safe
+cd ~/Documents/MAE6770Project/SafeComplan/examples
 echo "Executable files made.."
 
 
-mv ../../../src/2D/safe/$1 .
+mv ~/Documents/MAE6770Project/SafeComplan/src/safe/$1 .
 echo "Executable files moved to the current directory.."
 
 ./$1

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sys/time.h>
+#include "stdlib.h"
 #include "primitive.h"
 #include "readinputs.h"
 #include "extractoutput.h"
