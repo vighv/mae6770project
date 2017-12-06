@@ -1,14 +1,14 @@
-Trajectory Length = 10
+Trajectory Length = 7
 
 Final Iteration Time = 0h 0m 0s
 
-max_total_cost = 2.98757
-min_total_cost = 2.98757
-Cost Before Optimization = 2.68881
+max_total_cost = 2.0913
+min_total_cost = 2.0913
+Cost Before Optimization = 1.79254
 
 Total Time Before Optimization = 0h 0m 0s
 
-Cost After Optimization = 2.68881
+Cost After Optimization = 1.79254
 
 Total Time For Optimization = 0h 0m 0s
 
