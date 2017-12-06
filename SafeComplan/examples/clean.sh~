@@ -7,6 +7,3 @@ rm -f planner
 rm -f tool_*
 rm -f z3_output
 rm -f planner_output*
-rm -f result
-rm -f plan_noopt
-rm -f plan_opt

@@ -28,17 +28,17 @@ void generateZ3File(prim_vec_t primitives, pos_vec_t obstacles, workspace_t work
   writeInitialLocationConstraints(ofp, workspace);
   ofp << endl;
 
-  writeObstacleConstraints(ofp, obstacles, workspace);
-  ofp << endl;
+  //writeObstacleConstraints(ofp, obstacles, workspace);
+  //ofp << endl;
 
   writeTransitionConstraints(ofp, primitives, obstacles, workspace);
   ofp << endl;
 
-  writeCollisionAvoidanceConstraints2(ofp, primitives, workspace);
-  ofp << endl;
+  //writeCollisionAvoidanceConstraints2(ofp, primitives, workspace);
+  //ofp << endl;
 
-  writeDistanceConstraints(ofp, workspace);
-  ofp << endl;
+  //writeDistanceConstraints(ofp, workspace);
+  //ofp << endl;
   
   writeCostConstraint(ofp, workspace);
   ofp << endl;
@@ -47,10 +47,10 @@ void generateZ3File(prim_vec_t primitives, pos_vec_t obstacles, workspace_t work
   writeFinalDestinationConstraints1(ofp, workspace);
   //writeFinalDestinationConstraints2(ofp, workspace);
 
-  writeFormationConstraints(ofp, workspace);
-  ofp << endl;
-  writePrecedenceConstraints(ofp, workspace);
-  ofp << endl;
+  //writeFormationConstraints(ofp, workspace);
+  //ofp << endl;
+  //writePrecedenceConstraints(ofp, workspace);
+  //ofp << endl;
 
 
   /* Check the satisfiability of the constraints and output the model */

@@ -47,7 +47,8 @@ int generateTrajectory(prim_vec_t primitives, prim_cost_t prim_cost, pos_vec_t o
 
   ofstream ofp;
 
-  count = 26;
+  //count = 26;
+  count = workspace.number_of_points;
   while (1)
   {
     gettimeofday( &tm, NULL );
