@@ -62,8 +62,7 @@ Cost
 Here x_max and y_max denote the maximum x and y-coordinate. N denotes the number of robots. 
 x_init_1 to x_init_N denote the x-coordenates of the initial locations of the robots. y_init_1 to 
 y_init_N denote the y-coordinates of the final locations of the robots. L denotes the length of the
-trajectory. Cost is the maximum total allowable cost to synthesize the trajectories. Arm_ext_limit is the maximum that
-the third arm can extend forward in terms of difference in y-coordiantes of init and final.
+trajectory. Cost is the maximum total allowable cost to synthesize the trajectories.
 
 
 3. The third input file is obstacle.txt. Each entry of this file is a co-ordinate of a block in the

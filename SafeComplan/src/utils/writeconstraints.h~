@@ -9,6 +9,6 @@ void writeCollisionAvoidanceConstraints1(ofstream & , prim_vec_t , workspace_t )
 void writeCollisionAvoidanceConstraints2(ofstream & , prim_vec_t , workspace_t );
 void writeDistanceConstraints(ofstream & , workspace_t );
 void writeOutputConstraints(ofstream & , workspace_t );
-void writeInvariantConstraints(ofstream &, prim_vec_t, workspace_t );
+void writeInvariantConstraints(ofstream &ofp, workspace_t workspace);
 string floatToReal(string );
 template <typename T> string tostr(const T& );

@@ -256,9 +256,13 @@ void readWorkspace(workspace_t &workspace)
     istringstream (line) >> workspace.number_of_points;
 
     getline(ifp, line);
+    istringstream (line) >> workspace.arm_ext;
+
+    getline(ifp, line);
     workspace.total_cost = line;
+
   }
- 
+  
   ifp.close();
 }
 

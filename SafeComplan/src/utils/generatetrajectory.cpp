@@ -7,7 +7,7 @@
 #include "extractoutput.h"
 
 
-const unsigned int max_traj_length = 30;
+unsigned int max_traj_length = 30;
 
 void generateZ3File(prim_vec_t , pos_vec_t , workspace_t );
 
@@ -49,6 +49,7 @@ int generateTrajectory(prim_vec_t primitives, prim_cost_t prim_cost, pos_vec_t o
 
   //count = 26;
   count = workspace.number_of_points;
+  ::max_traj_length = workspace.number_of_points;
   while (1)
   {
     gettimeofday( &tm, NULL );
@@ -60,8 +61,8 @@ int generateTrajectory(prim_vec_t primitives, prim_cost_t prim_cost, pos_vec_t o
     cout << "Cost =" << cost << endl;
     workspace.total_cost = string(buffer);
 
-    sprintf(command, "time ./constraints_generator output %d", workspace.number_of_points - 1);
-    system(command);
+    //sprintf(command, "time ./constraints_generator output %d", workspace.number_of_points - 1);
+    //system(command);
 
     generateZ3File(primitives, obstacles, workspace);
     //cout << endl << "Timeout is set at 3600s." << endl;

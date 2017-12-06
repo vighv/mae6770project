@@ -43,6 +43,10 @@ void generateZ3File(prim_vec_t primitives, pos_vec_t obstacles, workspace_t work
   writeCostConstraint(ofp, workspace);
   ofp << endl;
 
+  writeInvariantConstraints(ofp, primitives, workspace);
+  ofp << endl;
+  
+
   /* Write the specification constraints */
   writeFinalDestinationConstraints1(ofp, workspace);
   //writeFinalDestinationConstraints2(ofp, workspace);
@@ -81,10 +85,11 @@ int main ()
   //writeObstacles(obstacles);
 
   readWorkspace(workspace);
+  cout<<"Arm Extension Limit= "<< workspace.arm_ext <<endl;
   //writeWorkspace(workspace);
 
-  sprintf(command, "time ./formula_simplifier input");
-  system(command);
+  //sprintf(command, "time ./formula_simplifier input");
+  //system(command);
 
   struct timeval tm;
   double wcts, wcte;

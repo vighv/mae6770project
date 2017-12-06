@@ -516,7 +516,7 @@ void writeCollisionAvoidanceConstraints2(ofstream &ofp, prim_vec_t primitives, w
 }
 
 
-void writeDistanceConstraints(ofstream &ofp, workspace_t workspace)
+void writeDistanceConstraints(ofstream &ofp, prim_vec_t primitives, workspace_t workspace)
 {
   unsigned int count, count1, count2;
   for (count = 1; count <= workspace.number_of_points; count++)
@@ -535,6 +535,29 @@ void writeDistanceConstraints(ofstream &ofp, workspace_t workspace)
       }
     }
   }
+}
+
+
+void writeInvariantConstraints(ofstream &ofp, prim_vec_t primitives, workspace_t workspace)
+{
+  // Invar of form (assert (and (>= y_1_N 0) (<= y_1_N 2)))
+  unsigned int count, count1;
+  int min;
+
+  //unsigned int max = workspace.arm_ext;
+  unsigned int max = 0;
+  for (count = 1; count <= workspace.number_of_points; count++)
+  {
+    for (count1 = 1; count1 <= workspace.number_of_uavs; count1++)
+    { 
+      min = workspace.pos_start[count1-1].y;       
+      max = min + int(workspace.arm_ext);
+      ofp << "(assert (and (>= y_" << count1 << "_" << count << " " << workspace.pos_start[count1-1].y <<") (<= y_" << count1 << "_" << count << " " << max <<")))" << endl; 
+  
+    }
+  }
+  
+  ofp << endl;
 }
 
 

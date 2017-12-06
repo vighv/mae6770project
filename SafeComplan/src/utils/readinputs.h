@@ -7,6 +7,7 @@ struct w
   position *pos_end;
   unsigned int number_of_points;
   string total_cost;
+  unsigned int arm_ext;
 };
 
 typedef struct w workspace_t;
