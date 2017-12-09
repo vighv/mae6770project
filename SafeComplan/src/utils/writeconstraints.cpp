@@ -553,6 +553,7 @@ void writeInvariantConstraints(ofstream &ofp, prim_vec_t primitives, workspace_t
       min = workspace.pos_start[count1-1].y;       
       max = min + int(workspace.arm_ext);
       ofp << "(assert (and (>= y_" << count1 << "_" << count << " " << workspace.pos_start[count1-1].y <<") (<= y_" << count1 << "_" << count << " " << max <<")))" << endl; 
+      ofp << "(assert (and (>= x_" << count1 << "_" << count << " " << workspace.pos_start[count1-1].x <<") (<= x_" << count1 << "_" << count << " " << max <<")))" << endl; 
   
     }
   }
