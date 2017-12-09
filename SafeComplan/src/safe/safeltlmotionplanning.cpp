@@ -28,8 +28,8 @@ void generateZ3File(prim_vec_t primitives, pos_vec_t obstacles, workspace_t work
   writeInitialLocationConstraints(ofp, workspace);
   ofp << endl;
 
-  //writeObstacleConstraints(ofp, obstacles, workspace);
-  //ofp << endl;
+  writeObstacleConstraints(ofp, obstacles, workspace);
+  ofp << endl;
 
   writeTransitionConstraints(ofp, primitives, obstacles, workspace);
   ofp << endl;

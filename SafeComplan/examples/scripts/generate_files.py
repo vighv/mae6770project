@@ -5,7 +5,8 @@
 # Note: workspace may be easier to edit in text
 
 import os
-import numpy as np 
+import numpy as np
+import random 
 
 class gen_workspace():
 
@@ -16,11 +17,11 @@ class gen_workspace():
 		self.y_max = 10
 		self.n_agents = 1
 		self.init_posx = 5
-		self.init_posy = 5
+		self.init_posy = 3
 		self.final_posx = 8
 		self.final_posy = 8
-		self.num_steps = 7
-		self.max_ext = 5
+		self.num_steps = 10
+		self.max_ext = 7
 		self.max_cost = 10
 
 		self.params = [self.x_max, self.y_max, self.n_agents, self.init_posx, self.init_posy, self.final_posx, self.final_posy, self.num_steps, self.max_ext, self.max_cost]
@@ -40,11 +41,11 @@ class gen_workspace():
 			fw.write('\n')
 
 		# Write init_pos:
-		initstr = str(self.init_posx)+' '+str(self.init_posy)+'\n'
+		initstr = str(self.params[3])+' '+str(self.params[4])+'\n'
 		fw.write(initstr)
 
 		# Write final_pos:
-		finalstr = str(self.final_posx)+' '+str(self.final_posy)+'\n'
+		finalstr = str(self.params[5])+' '+str(self.params[6])+'\n'
 		fw.write(finalstr)
 
 		#Write other lines:
@@ -52,9 +53,36 @@ class gen_workspace():
 			fw.write(str(self.params[i]))
 			fw.write('\n')
 
+	def return_params(self):
+		return self.params
 
 
+def calc_lengths(num_divisions, goal_x, goal_y):
+	x_max = num_divisions
+	y_max = num_divisions
+	n_agents = 1
+	init_posx = int(num_divisions/2)
+	init_posy = int(num_divisions/3)
+	final_posx = goal_x
+	final_posy = goal_y
+	num_steps = int(np.abs(final_posx - init_posx) + np.abs(final_posy - init_posy) + 1)
+	max_ext = int(num_divisions/3)
+	max_cost = num_divisions
 
+	params = [x_max, y_max, n_agents, init_posx, init_posy, final_posx, final_posy, num_steps, max_ext, max_cost]
+	return params
+
+
+def gen_obstacle(fname):
+	#For now the obstacle map is empty
+	fw = open(ob_file,'w')
+	fw.write('')
+
+
+class motion_prim():
+	def __init__(self, filename, ws_parameters, arm_params):
+		self.fname = filename
+		self.ws_params = ws_parameters
 
 
 if __name__ == '__main__':
@@ -65,7 +93,19 @@ if __name__ == '__main__':
 	ob_file = os.path.abspath(os.path.join(dir, '..', 'obstacle.txt'))
 
 	ws = gen_workspace(ws_file)
+	
+	num_divisions = 6 # Number of divisions in the map
+	goal_x = int(num_divisions*2/3)
+	goal_y = int(num_divisions*random.uniform(0.33,0.66))
+	ws_params = calc_lengths(num_divisions, goal_x, goal_y)
+
+	ws.change_params(ws_params)
+
 	ws.gen_txt()
+
+	
+
+
 
 
 
