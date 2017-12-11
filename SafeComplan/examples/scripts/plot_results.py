@@ -9,13 +9,17 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 # Plotting function
-def plot(ws_data, traj_data):
+def plot(ws_data, traj_data=([1,1], [2,2]), obs_data=[1,1]):
 	
 	xlim, ylim, init_x, init_y, final_x, final_y = ws_data
 	xtraj, ytraj = traj_data
+	xobs, yobs = obs_data
 
 	xt = [x+0.5 for x in xtraj]
 	yt = [y+0.5 for y in ytraj]
+
+	xo = [x+0.5 for x in xobs]
+	yo = [y+0.5 for y in yobs]
 
 	fig = plt.figure()
 	ax = fig.gca()
@@ -30,6 +34,7 @@ def plot(ws_data, traj_data):
 	plt.scatter(init_x+0.5, init_y+0.5, c='k', s=400)
 	plt.scatter(final_x+0.5, final_y+0.5, c='g', s=400)
 	plt.scatter(xt, yt, c='b', s=300, alpha=0.3)
+	plt.scatter(xo, yo, marker='s', c='r', s = 600)
 
 	plt.show()
 
@@ -68,12 +73,24 @@ def gen_traj(data):
 
 	return xs, ys
 
+# Extract obstacle data:
+def gen_obs(data):
+	xs = []
+	ys = []
+
+	for strs in data:		
+		split = strs.find(',')
+		xs.append(int(strs[0 : split]))				
+		ys.append(int(strs[split+1 : len(strs)]))
+
+	return xs, ys
 
 if __name__ == '__main__':
 	dir = os.path.dirname(__file__)
 		
 	ws_file = os.path.abspath(os.path.join(dir, '..', 'workspace.txt'))
 	plan_file = os.path.abspath(os.path.join(dir, '..', 'planner_output'))
+	ob_file = os.path.abspath(os.path.join(dir, '..', 'obstacle.txt'))
 	
 	#with open (ws_file, 'r') as myfile:
 	#	data=myfile.read().replace('\n', '')
@@ -87,17 +104,36 @@ if __name__ == '__main__':
 	
 	ws_data = gen_ws(ws)
 	
-	ft = open(plan_file,'r')
-	tr = []
-	for line in ft:
+	try:
+		with open(plan_file,'r') as ft:
+			tr = []
+			for line in ft:
+				line = line.replace('\n', '')
+				line = line.replace(' ', ',')
+				tr.append(line)
+			traj_data = gen_traj(tr)
+			#print(tr)
+	except:
+		traj_data = ([1,1], [2,2])
+		pass
+		
+	
+	
+	fo = open(ob_file,'r')
+	ob = []
+	for line in fo:
 		line = line.replace('\n', '')
 		line = line.replace(' ', ',')
-		tr.append(line)
-	#print(tr)	
-		
-	traj_data = gen_traj(tr)
-		
-	plot(ws_data, traj_data)
+		ob.append(line)
+	#print(ob)	
+	
+	ob_data = gen_obs(ob)
+	print(ob_data)
+
+	#traj_data = gen_traj(tr)
+	
+
+	plot(ws_data, traj_data, ob_data)
 
 
 	# fp = open(plan_file,'r')

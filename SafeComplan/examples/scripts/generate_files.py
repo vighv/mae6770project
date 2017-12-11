@@ -65,18 +65,26 @@ def calc_lengths(num_divisions, goal_x, goal_y):
 	init_posy = int(num_divisions/3)
 	final_posx = goal_x
 	final_posy = goal_y
-	num_steps = int(np.abs(final_posx - init_posx) + np.abs(final_posy - init_posy) + 1)
-	max_ext = int(num_divisions/3)
+	num_steps = int(np.abs(final_posx - init_posx) + np.abs(final_posy - init_posy) ) + 1
+	max_ext = int(num_divisions/3) + 1
 	max_cost = num_divisions
 
 	params = [x_max, y_max, n_agents, init_posx, init_posy, final_posx, final_posy, num_steps, max_ext, max_cost]
 	return params
 
 
-def gen_obstacle(fname):
+def gen_obstacle(fname, n):
 	#For now the obstacle map is empty
 	fw = open(ob_file,'w')
-	fw.write('')
+	obs_x = range(int(n/5), int(n/3)+1, 1)
+	obs_y = range(int(0.4*n), int(0.6*n)+1, 1)
+
+	for i in range(len(obs_x)):		
+		for j in range(len(obs_y)):
+			fw.write(str(obs_x[i]))
+			fw.write(' ')
+			fw.write(str(obs_y[j]))
+			fw.write('\n')
 
 
 class motion_prim():
@@ -94,14 +102,17 @@ if __name__ == '__main__':
 
 	ws = gen_workspace(ws_file)
 	
-	num_divisions = 6 # Number of divisions in the map
-	goal_x = int(num_divisions*2/3)
-	goal_y = int(num_divisions*random.uniform(0.33,0.66))
+	num_divisions = 30 # Number of divisions in the map
+	goal_x = int(num_divisions*random.uniform(0.41,0.66))
+	goal_y = int(num_divisions*random.uniform(0.35,0.66))
 	ws_params = calc_lengths(num_divisions, goal_x, goal_y)
+
+	gen_obstacle(ob_file, num_divisions)
 
 	ws.change_params(ws_params)
 
 	ws.gen_txt()
+
 
 	
 
